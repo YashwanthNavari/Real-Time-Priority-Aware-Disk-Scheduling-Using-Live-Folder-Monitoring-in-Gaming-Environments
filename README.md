@@ -1,6 +1,8 @@
 # 🎮 Real-Time Priority-Aware Disk Scheduler
 ### *Optimizing Disk I/O for High-Performance Gaming Environments*
 
+[![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-Streamlit%20Cloud-FF4B4B?style=for-the-badge&logo=streamlit)](https://33mkzhphosqo2zhznbgbja.streamlit.app/)
+
 ![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
 ![OS](https://img.shields.io/badge/OS-Hard_Disk_Storage-0052FF?style=for-the-badge&logo=windows&logoColor=white)
