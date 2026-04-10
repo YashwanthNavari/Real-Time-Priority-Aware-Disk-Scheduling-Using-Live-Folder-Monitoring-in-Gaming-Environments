@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+*.tmp
+.gemini/
+.agents/
+.agent/
+_agents/
+_agent/
+brain/
+tmp/
