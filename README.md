@@ -10,6 +10,11 @@
 
 ![Project Hero](./hero_image.png)
 
+## ✨ Recent Enhancements
+- **💎 Professional README**: The repository now features a high-end technical document with clear architecture and data visualization.
+- **🎨 Hero Branding**: A custom-designed "Disk Scheduler" visual identity has been established as the face of the project.
+- **☁️ Cloud Simulation**: Integrated interactive sidebar controls in the [Live App](https://33mkzhphosqo2zhznbgbja.streamlit.app/) to demonstrate the **Priority-SCAN** algorithm's real-time preemption logic seamlessly in any browser.
+
 ## 🌌 Overview
 In modern gaming, **stuttering** and **frame drops** are often caused by background processes (like Windows Updates or file backups) fighting for Disk Head access while a game attempts to stream high-resolution textures.
 
