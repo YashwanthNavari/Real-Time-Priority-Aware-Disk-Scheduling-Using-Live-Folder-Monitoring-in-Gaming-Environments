@@ -14,8 +14,13 @@ from algorithms import DiskScheduler
 # Layout config MUST be the first Streamlit command
 st.set_page_config(page_title="Gaming Disk Scheduler", layout="wide")
 
-BASE_DIR = "C:/Gaming_System"
+# Use a local directory that works on both Windows and Linux (for Cloud deployment)
+BASE_DIR = os.path.join(os.getcwd(), "gaming_system_sim")
 FOLDERS = ["Game_Folder", "Recording_Folder", "Background_Folder"]
+
+# Auto-create directory structure
+for folder in FOLDERS:
+    os.makedirs(os.path.join(BASE_DIR, folder), exist_ok=True)
 
 def init_session_state():
     if 'request_queue' not in st.session_state:
@@ -116,6 +121,39 @@ def main():
     init_session_state()
     start_monitor_thread()
     
+    # --- Sidebar Simulation Controls ---
+    with st.sidebar:
+        st.header("🚀 Cloud Simulation Mode")
+        st.info("In cloud environments, you can't manually create files in the server folders. Use these buttons to simulate disk I/O events.")
+        
+        col_s1, col_s2 = st.columns(2)
+        with col_s1:
+            if st.button("🎮 Load Game Assets"):
+                for i in range(3):
+                    fpath = os.path.join(BASE_DIR, "Game_Folder", f"sim_game_{int(time.time())}_{i}.dat")
+                    with open(fpath, "w") as f: f.write("sim")
+            if st.button("📹 Start Recording"):
+                fpath = os.path.join(BASE_DIR, "Recording_Folder", f"sim_rec_{int(time.time())}.mp4")
+                with open(fpath, "w") as f: f.write("sim")
+        with col_s2:
+            if st.button("📥 Background Update"):
+                fpath = os.path.join(BASE_DIR, "Background_Folder", f"sim_update_{int(time.time())}.bin")
+                with open(fpath, "w") as f: f.write("sim")
+            if st.button("🧹 Clear All Files"):
+                for folder in FOLDERS:
+                    p = os.path.join(BASE_DIR, folder)
+                    for f in os.listdir(p):
+                        try: os.remove(os.path.join(p, f))
+                        except: pass
+                st.session_state.processed_requests = []
+                st.session_state.request_queue = queue.Queue()
+                for s in st.session_state.schedulers.values():
+                    s.pending_requests = []
+                    s.total_requests = 0
+                    s.total_seek_time = 0
+                    s.total_waiting_time = 0
+                st.rerun()
+
     # Title
     st.title("🎮 Advanced Real-Time Priority-Aware Disk Scheduler")
     tab1, tab2, tab3 = st.tabs(["🔴 Live Disk Tracking", "📊 Comparative Algorithm Analysis", "📘 Theoretical OS Report"])
